@@ -16,22 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.cxf.jaxrs.provider.atom;
+package org.apache.cxf.jaxrs.utils;
 
-import org.apache.abdera.model.Element;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-/**
- * A callback-style interface which can be used to deserialize an Atom Feed or Entry into a custom object
- * without having to introduce direct dependencies on Abdera API in the 'main' service code
- *
- * @param <T> Type of Atom element, Feed or Entry
- * @param <E> Type of objects which will be deseriaized from feed or entry
- *
- */
-public interface AtomElementReader<T extends Element, E> {
-    /**
-     * @param element Feed or Entry instance
-     * @return pojoElement
-     */
-    E readFrom(T element);
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+
+public class LocalDateXmlAdapter extends XmlAdapter<String, LocalDate> {
+    @Override
+    public LocalDate unmarshal(String stringValue) {
+        return stringValue != null ? LocalDate.parse(stringValue, DateTimeFormatter.ISO_DATE) : null;
+    }
+
+    @Override
+    public String marshal(LocalDate value) {
+        return value != null ? value.format(DateTimeFormatter.ISO_DATE) : null;
+    }
 }

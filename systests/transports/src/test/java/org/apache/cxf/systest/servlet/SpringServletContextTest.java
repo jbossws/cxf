@@ -20,13 +20,12 @@ package org.apache.cxf.systest.servlet;
 
 import java.util.Arrays;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-
 import com.meterware.httpunit.WebRequest;
 import com.meterware.httpunit.WebResponse;
 import com.meterware.servletunit.ServletUnitClient;
 
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusException;
 import org.apache.cxf.bus.spring.SpringBus;
@@ -41,7 +40,7 @@ import org.springframework.context.annotation.DependsOn;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SpringServletContextTest extends AbstractServletTest {
     @Configuration

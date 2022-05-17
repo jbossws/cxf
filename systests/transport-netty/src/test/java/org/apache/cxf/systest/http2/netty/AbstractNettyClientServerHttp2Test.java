@@ -19,8 +19,7 @@
 
 package org.apache.cxf.systest.http2.netty;
 
-import javax.ws.rs.core.Response;
-
+import jakarta.ws.rs.core.Response;
 import org.apache.cxf.configuration.jsse.TLSClientParameters;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.apache.cxf.systest.http2.netty.Http2TestClient.ClientResponse;
@@ -31,8 +30,8 @@ import org.apache.cxf.transport.https.InsecureTrustManager;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 abstract class AbstractNettyClientServerHttp2Test extends AbstractBusClientServerTestBase {
     @Test

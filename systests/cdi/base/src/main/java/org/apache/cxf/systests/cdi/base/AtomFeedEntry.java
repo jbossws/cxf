@@ -16,22 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.cxf.jaxrs.provider.atom;
+package org.apache.cxf.systests.cdi.base;
 
-import org.apache.abdera.model.Element;
+public class AtomFeedEntry {
+    private String link;
 
-/**
- * A callback-style interface which can be used to map an object to an Atom Feed or Entry
- * without having to introduce direct dependencies on Abdera API in the 'main' service code
- *
- * @param <T> Type of Atom element, Feed or Entry
- * @param <E> Type of objects which will be mapped to feed or entry
- *
- */
-public interface AtomElementWriter<T extends Element, E> {
-    /**
-     * @param element Feed or Entry instance
-     * @param pojoElement An object which needs to be mapped to the feed or entry
-     */
-    void writeTo(T element, E pojoElement);
+    public void addLink(String l) {
+        this.link = l;
+    }
+    
+    public String getLink() {
+        return link;
+    }
 }

@@ -32,7 +32,7 @@
         <connection>scm:git:https://gitbox.apache.org/repos/asf/cxf.git</connection>
         <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/cxf.git</developerConnection>
         <url>https://gitbox.apache.org/repos/asf?p=cxf.git;a=summary</url>
-        <tag>cxf-3.5.2</tag>
+        <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>jira</system>
@@ -40,9 +40,9 @@
     </issueManagement>
     <properties>
         <cxf.compiler.fork>false</cxf.compiler.fork>
-        <cxf.build-utils.version>3.4.4</cxf.build-utils.version>
-        <cxf.xjc-utils.version>3.3.1</cxf.xjc-utils.version>
-        <cxf.jdk.version>1.8</cxf.jdk.version>
+        <cxf.build-utils.version>3.5.2-jbossorg-1-SNAPSHOT</cxf.build-utils.version>
+        <cxf.xjc-utils.version>3.5.2-jbossorg-1-SNAPSHOT</cxf.xjc-utils.version>
+        <cxf.jdk.version>11</cxf.jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <site.deploy.url>scp://people.apache.org/www/cxf.apache.org/maven-site</site.deploy.url>
         <maven-owasp-plugin-version>6.5.3</maven-owasp-plugin-version>
@@ -171,10 +171,17 @@
         <module>integration</module>
         <module>maven-plugins</module>
         <module>services</module>
-        <module>osgi</module>
         <module>systests</module>
     </modules>
     <profiles>
+        <!-- TODO: This profile includes modules which are still on 'javax.*' namespace and
+        are not migrated to Jakarta -->
+        <profile>
+            <id>javax</id>
+            <modules>
+                <module>osgi</module>
+            </modules>
+        </profile>
         <profile>
             <!-- default profile enables checkstyle and Xlint stuff -->
             <id>everything</id>
@@ -318,7 +325,7 @@
                                             <entry key="org.eclipse.jdt.ui.cleanupprofiles" value="${eclipse.code.cleanup}" />
                                             <entry key="org.eclipse.jdt.ui.text.custom_code_templates" value="${eclipse.code.templates}" />
                                             <!-- Add import order -->
-                                            <entry key="org.eclipse.jdt.ui.importorder" value="java;javax;org.w3c;org.xml;junit;antlr;com;net;org;org.junit;#org.junit" />
+                                            <entry key="org.eclipse.jdt.ui.importorder" value="java;javax.org.w3c;org.xml;junit;antlr;com;net;org;org.junit;#org.junit" />
                                             <!-- Sort order -->
                                             <entry key="org.eclipse.jdt.ui.visibility.order" value="B,R,D,V," />
                                             <entry key="outlinesortoption" value="T,SF,F,SI,I,C,SM,M," />
@@ -418,6 +425,30 @@
                 </plugins>
             </build>
         </profile>
+        <!-- 
+            TODO: Please remove, temporary repository settings in order to enable snapshots for
+            Spring Boot 3.0.0
+        -->
+        <profile>
+            <id>jakarta</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>spring.milestone</id>
+                    <url>https://repo.spring.io/milestone/</url>
+                    <name>Spring Milestone Repo</name>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>spring.milestone</id>
+                    <url>https://repo.spring.io/milestone/</url>
+                    <name>Spring Milestone Repo</name>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
     </profiles>
     <build>
         <defaultGoal>install</defaultGoal>
@@ -469,6 +500,7 @@
                         <detectOfflineLinks>false</detectOfflineLinks>
                         <notimestamp>true</notimestamp>
                         <doclint>none</doclint>
+                        <javadocVersion>1.8.0</javadocVersion>
                         <!--subpackages>org.apache.cxf</subpackages-->
                     </configuration>
                 </plugin>
@@ -555,7 +587,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-plugin-plugin</artifactId>
-                    <version>3.6.0</version>
+                    <version>3.6.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -637,9 +669,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.0.0-M3</version>
+                    <version>3.0.0</version>
                     <configuration>
                         <rules>
+                            <requireJavaVersion>
+                                <version>11</version>
+                            </requireJavaVersion>
                             <requireMavenVersion>
                                 <version>3.5</version>
                             </requireMavenVersion>
@@ -654,10 +689,10 @@
                                     <exclude>javax.activation:javax.activation-api</exclude>
                                     <exclude>com.sun.activation:javax.activation</exclude>
                                     <exclude>javax.annotation:javax.annotation-api</exclude>
-                                    <!--<exclude>javax.validation:validation-api</exclude>-->
+                                    <exclude>javax.validation:validation-api</exclude>
                                     <exclude>javax.servlet:servlet-api</exclude>
                                     <exclude>javax.json:javax.json-api</exclude>
-                                    <!--<exclude>javax.el:javax.el-api</exclude>-->
+                                    <exclude>javax.el:javax.el-api</exclude>
                                 </excludes>
                             </bannedDependencies>
                         </rules>

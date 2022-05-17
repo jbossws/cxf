@@ -38,11 +38,11 @@
                         <version>${cxf.xjc-utils.version}</version>
                     </dependency>
                     <dependency>
+                        <!--we need the plugin which supports jaxb3-->
                         <groupId>net.java.dev.jaxb2-commons</groupId>
                         <artifactId>jaxb-fluent-api</artifactId>
                         <version>2.1.8</version>
                     </dependency>
-                     
                 </dependencies>
                 <configuration>
                     <defaultOptions>
