@@ -35,7 +35,7 @@
         <module>uncategorized</module>
         <module>transports</module>
         <module>forked</module>
-        <module>transport-undertow</module>
+
         <module>jaxws</module>
         <module>databinding</module>
         <module>ws-specs</module>
@@ -43,16 +43,13 @@
         <module>ws-security</module>
         <module>ws-security-examples</module>
         <module>kerberos</module>
-        <module>ldap</module>
-        <module>rs-security</module>
+
+
         <module>wsdl_maven</module>
         <module>cdi</module>
-        <module>rs-http-sci</module>
+
         <module>tracing</module>
         <module>ws-transfer</module>
-        <module>rs-sse</module>
-        <module>microprofile</module>
-        <module>spring-boot</module>
         <module>transport-netty</module>
         <module>transport-hc5</module>
         <module>transport-jms</module>
@@ -65,6 +62,14 @@
             <id>javax</id>
             <modules>
                 <module>jaxrs</module>
+                <module>rs-sse</module>
+                <module>microprofile</module>
+                <module>spring-boot</module>
+                <module>rs-http-sci</module>
+                <module>rs-security</module>
+                <!--cxf-rt-transports-websocket and cxf-rt-rs-extension-providers are not ready-->
+                <module>transport-undertow</module>
+                <module>ldap</module>
             </modules>
         </profile>
     </profiles>
