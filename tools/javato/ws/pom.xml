@@ -69,11 +69,11 @@
             <artifactId>cxf-tools-wsdlto-frontend-jaxws</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-javascript</artifactId>
             <version>${project.version}</version>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>wsdl4j</groupId>
             <artifactId>wsdl4j</artifactId>
@@ -195,6 +195,19 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!--exclude the test source depends on java2script which is not jakarta native ready-->
+                    <excludes>
+                        <exclude>org/apache/cxf/tools/java2js/**/*.java</exclude>
+                    </excludes>
+                    <testExcludes>
+                        <testExclude>org/apache/cxf/tools/java2js/**/*.java</testExclude>
+                    </testExcludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>

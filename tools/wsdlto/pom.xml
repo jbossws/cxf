@@ -32,9 +32,18 @@
     <modules>
         <module>core</module>
         <module>frontend/jaxws</module>
-        <module>frontend/javascript</module>
         <module>databinding/jaxb</module>
         <module>test</module>
         <module>misc</module>
     </modules>
+    <profiles>
+        <!-- TODO: This profile includes modules which are still on 'javax.*' namespace and
+        are not migrated to Jakarta -->
+        <profile>
+            <id>javax</id>
+            <modules>
+                <module>frontend/javascript</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>
