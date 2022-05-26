@@ -359,23 +359,6 @@
                             <updateReleaseInfo>true</updateReleaseInfo>
                         </configuration>
                     </plugin>
-                    <!-- We want to sign the artifact, the POM, and all attached artifacts -->
-                    <plugin>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <gpgArguments>
-                                <arg>--digest-algo=SHA512</arg>
-                            </gpgArguments>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
