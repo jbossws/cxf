@@ -364,9 +364,9 @@
         </profile>
         <profile>
             <id>deploy</id>
-            <modules>
+            <!--modules>
                 <module>distribution</module>
-            </modules>
+            </modules-->
             <build>
                 <defaultGoal>deploy</defaultGoal>
                 <plugins>
