@@ -716,17 +716,6 @@
                     <niceManifest>true</niceManifest>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.8</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <nexusUrl>https://repository.jboss.org/nexus/</nexusUrl>
-                    <serverId>jboss-releases-repository</serverId>
-                    <stagingProfileId>2161b7b8da0080</stagingProfileId>
-                </configuration>
-            </plugin>
         </plugins>
         <defaultGoal>install</defaultGoal>
     </build>
