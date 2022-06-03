@@ -27,6 +27,8 @@ import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.core.Request;
 import jakarta.ws.rs.core.SecurityContext;
 import jakarta.ws.rs.core.UriInfo;
+
+import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.helpers.IOUtils;
 import org.apache.cxf.io.DelegatingInputStream;
 import org.apache.cxf.jaxrs.utils.ExceptionUtils;
@@ -107,7 +109,11 @@ public class ContainerRequestContextImpl extends AbstractRequestContextImpl
             String baseUriString = new UriInfoImpl(m).getBaseUri().toString();
             String requestUriString = requestUri.toString();
             if (!requestUriString.startsWith(baseUriString)) {
-                setRequestUri(requestUri, URI.create("/"));
+                String path = requestUri.getRawPath();
+                if (StringUtils.isEmpty(path)) {
+                    path = "/";
+                }
+                setRequestUri(requestUri.resolve("/"), URI.create(path));
                 return;
             }
             requestUriString = requestUriString.substring(baseUriString.length());
