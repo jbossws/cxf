@@ -93,7 +93,7 @@
             <artifactId>cxf-tools-wsdlto-frontend-jaxws</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!--dependency>
+        <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-tools-wsdlto-frontend-javascript</artifactId>
             <version>${project.version}</version>
@@ -103,7 +103,7 @@
                     <artifactId>cxf-rt-frontend-simple</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency-->
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -197,25 +197,6 @@
                        <version>${cxf.jaxb.version}</version>
                     </dependency>
                 </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <!--exclude the test source depends on java2script which is not jakarta native ready-->
-                    <excludes>
-                        <exclude>org/apache/cxf/maven_plugin/wsdl2js/*.java</exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <sourceFileExcludes>
-                        <sourceFileExclude>org/apache/cxf/maven_plugin/wsdl2js/*.java</sourceFileExclude>
-                    </sourceFileExcludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>

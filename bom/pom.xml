@@ -149,11 +149,11 @@
                 <artifactId>cxf-rt-frontend-simple</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--dependency>
+            <dependency>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-rt-javascript</artifactId>
                 <version>${project.version}</version>
-            </dependency-->
+            </dependency>
             <dependency>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-rt-management</artifactId>
@@ -444,11 +444,11 @@
                 <artifactId>cxf-tools-wsdlto-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--dependency>
+            <dependency>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-tools-wsdlto-frontend-javascript</artifactId>
                 <version>${project.version}</version>
-            </dependency-->
+            </dependency>
             <dependency>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-tools-wsdlto-frontend-jaxws</artifactId>
